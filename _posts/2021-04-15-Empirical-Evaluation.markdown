@@ -29,6 +29,9 @@ In low sample setting, such as human-level tasks, these models contain more dime
 These tasks present a challenge in modeling, as the samples from a person are composed of incoherent subject matters (posts) with a few high signal messages amidst the noise. Some of the human-level tasks are unique in not having a single ground truth but a set of accepted outcomes - making it challenging to interpret metrics like accuracy.
 Hence these tasks provide an alternative evaluation of the semantics captured by the standard LMs, i.e., understanding the person behind the text rather than assuming a single view of what the text expresses. This also suggests that the many dimensions of transformers containing syntax and semantics of text may be less useful. It is also important to note that fewer features are easier to generalize the model.
 
+### Which transformer model is suited for these tasks?
+Most of these tasks are based on social media language. Hence a model fine-tuned to the social media domain would work the best. However, amongst the popularly used pre-trained models, we find roberta to offer the best performance in these tasks.
+
 ### How do we improve the performance of transformers in these tasks?
 It is very simple, yet effective. Training PCA to reduce the dimensions of the transformer on the domain data improves the performance over these pre-trained representations. The number of dimensions required to obtain the best performance is summarized in the table above for each domain of tasks. We find that many human-level tasks only require 1/6th or 1/12th of the hidden dimensions to achieve best performance.
 

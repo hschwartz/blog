@@ -3,24 +3,45 @@ layout: post
 title:  "Empirical Evaluation of Pre-trained Transformers for Human-Level NLP: The Role of Sample Size and Dimensionality"
 date:   2021-04-15 15:14:45 -0400
 categories: paper
+script: /assets/ConEmbDR/empirical-eval.js
 ---
 
-<!--<p id="demo">JavaScript can change HTML content.</p>-->
+### TLDR: How many dimensions are required for your Human-Level Task?
+<div class="row" align="center">
+<div class="col-sm" style="margin: 2%">
+<select id="task" class="custom-select custom-select-lg mb-3">
+<option value="" selected disabled hidden>Choose Task</option>
+<option value="demographics">Demographics</option>
+<option value="personality">Personality</option>
+<option value="mental health">Mental Health</option>
+</select>
+</div>
+<div class="col-sm" style="margin: 2%">
+<select id="samples" class="custom-select custom-select-lg mb-3 col-sm">
+<option value="" selected disabled hidden>Choose Train Sample Size</option>
+<option value="50">50</option>
+<option value="100">100</option>
+<option value="200">200</option>
+<option value="500">500</option>
+<option value="1000">1000</option>
+</select>
+</div>
+</div>
 
-<!--<button type="button" onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"'>Click Me!</button>-->
+<div align="center" style="margin-bottom: 2%">
+<button onclick="changeFunc();" class="btn btn-outline-secondary">Submit</button>
+</div>
 
-### TLDR;
+<div id="answer" align="center" style="font-size:large; color:rgb(140, 20, 20) "></div>
 
-| Number of training samples | Demographic Tasks | Personality Tasks | Mental Health Tasks |
-| -------------------------- | :---------------: | :---------------: | :-----------------: |
-| 50                         | 16                | 16                | 16                  |
-| 100			     | 128		 | 16		     | 22		   |
-| 200			     | 512		 | 32		     | 45		   |
-| 500			     | 768		 | 64		     | 64		   |
-| 1000			     | 768		 | 90 		     | 64		   |
+<div align="center" style="margin-top: 2%">
+<a href="#" id="dwnld" hidden download><button type="button" class="btn btn-outline-info">Download our trained PCA Model</button></a>
+</div>
+
+<hr>
 
 This work is intended to inform researchers in Computational Social Science a simple way to improve the performance of transformer based models. We find that training PCA on transformer representations using the domain data improves the model performance overall, with evidence of handling longer sequences better than other reduction methods.
-The table above presents a summary of systematic experiments, recommmending the number of dimensions required for given number of samples in each task domain to achieve the best performance.
+Use the above lookup to get the recommmended number of dimensions required for given number of samples in each task domain to achieve the best performance.
 
 ### What are Human-Level NLP tasks?
 Human-level NLP tasks, rooted in computational social science, focus on making predictions about people from their language use patterns. Examples of these tasks include demographic prediction, personality trait prediction and mental health related tasks. These tasks aim to understand the language not just merely based on the words and what they mean, but the context (history) in which they occur and the person behind it. 

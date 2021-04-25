@@ -1,6 +1,3 @@
-
-
-
 var table = {
 "demographics": {50: 16, 100: 128, 200: 512, 500: 768, 1000: 768},
 "personality": {50: 16, 100: 16, 200: 32, 500: 64, 1000: 90},
@@ -28,34 +25,47 @@ var links = {
 	}
 
 var Nta = [50, 100, 200, 500, 1000]
+var selectedTaskValue = null
+var selectedSamplesValue = null
 
 function changeFunc() {
 		var selectTask = document.getElementById("task");
-		var selectedTaskValue = selectTask.options[selectTask.selectedIndex].value;
+		temp = selectTask.options[selectTask.selectedIndex].value;
+		
+		if (temp !== ""){
+			selectedTaskValue = temp 
+		}
 
-	var selectSamples = document.getElementById("samples");
-		var selectedSamplesValue = selectSamples.options[selectSamples.selectedIndex].value;
+		var selectSamples = document.getElementById("samples");
+		temp = selectSamples.options[selectSamples.selectedIndex].value;
+		
+		if (temp !== ""){
+			selectedSamplesValue = temp
+		}
 
 		var answer = document.getElementById("answer");
 		var dwnld = document.getElementById("dwnld");
+		var info = document.getElementById("info");
+		var tooltip = new bootstrap.Tooltip(info, {"placement":"right", })
 
 		if (selectedSamplesValue !== null && selectedTaskValue !== null){
 
 			if (table[selectedTaskValue][parseInt(selectedSamplesValue)] !== 768){
-				answer.innerHTML = "Reduce Roberta base embeddings to " + table[selectedTaskValue][parseInt(selectedSamplesValue)].toString() + " dimensions using PCA."
+				answer.innerHTML = "We recommend reducing Roberta base embeddings from 768 dimensions to " + table[selectedTaskValue][parseInt(selectedSamplesValue)].toString() + "."
 			}
 			else {
-				answer.innerHTML = "Use the Roberta embeddings as is."
+				answer.innerHTML = "We recommend using the Roberta base embeddings as is."
 			}
-			//dwnld.download = gh_models_url
 			
 			if (links[selectedTaskValue][parseInt(selectedSamplesValue)] === ""){
 				dwnld.hidden = true
 				dwnld.href = "#"
+				info.hidden = true
 			}
 			else{
 				dwnld.hidden = false
 				dwnld.href = models_base_url + links[selectedTaskValue][parseInt(selectedSamplesValue)]
+				info.hidden = false
 			}
 		}
 }

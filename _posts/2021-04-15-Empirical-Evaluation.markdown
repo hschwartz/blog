@@ -9,7 +9,7 @@ script: /assets/ConEmbDR/empirical-eval.js
 ### TLDR: How many dimensions are required for your Human-Level Task?
 <div class="row" align="center">
 <div class="col-sm" style="margin: 2%">
-<select id="task" class="custom-select custom-select-lg mb-3">
+<select id="task" class="custom-select custom-select-lg mb-3" onchange="changeFunc();">
 <option value="" selected disabled hidden>Choose Task</option>
 <option value="demographics">Demographics</option>
 <option value="personality">Personality</option>
@@ -17,7 +17,7 @@ script: /assets/ConEmbDR/empirical-eval.js
 </select>
 </div>
 <div class="col-sm" style="margin: 2%">
-<select id="samples" class="custom-select custom-select-lg mb-3 col-sm">
+<select id="samples" class="custom-select custom-select-lg mb-3 col-sm" onchange="changeFunc();">
 <option value="" selected disabled hidden>Choose Train Sample Size</option>
 <option value="50">50</option>
 <option value="100">100</option>
@@ -28,14 +28,11 @@ script: /assets/ConEmbDR/empirical-eval.js
 </div>
 </div>
 
-<div align="center" style="margin-bottom: 2%">
-<button onclick="changeFunc();" class="btn btn-outline-secondary">Submit</button>
-</div>
-
 <div id="answer" align="center" style="font-size:large; color:rgb(140, 20, 20) "></div>
 
 <div align="center" style="margin-top: 2%">
 <a href="#" id="dwnld" hidden download><button type="button" class="btn btn-outline-info">Download our trained PCA Model</button></a>
+<a href="https://github.com/adithya8/ContextualEmbeddingDR" id="info" hidden data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click to view the code snippet for using this model."><i><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm.5 17h-1v-9h1v9zm-.5-12c.466 0 .845.378.845.845 0 .466-.379.844-.845.844-.466 0-.845-.378-.845-.844 0-.467.379-.845.845-.845z"/></svg></i></a>
 </div>
 
 <hr>

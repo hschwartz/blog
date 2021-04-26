@@ -45,6 +45,8 @@ function changeFunc() {
 
 		var answer = document.getElementById("answer");
 		var dwnld = document.getElementById("dwnld");
+		var dwnld_pkl = document.getElementById("dwnld_pkl");
+		var dwnld_csv = document.getElementById("dwnld_csv");
 		var info = document.getElementById("info");
 		var tooltip = new bootstrap.Tooltip(info, {"placement":"right", })
 
@@ -58,16 +60,18 @@ function changeFunc() {
 			}
 			
 			if (links[selectedTaskValue][parseInt(selectedSamplesValue)][0] === ""){
-				dwnld.hidden = true
+				dwnld.hidden= true
+				dwnld_pkl.hidden = true
 				dwnld_csv.hidden = true
-				dwnld.href = "#"
+				dwnld_pkl.href = "#"
 				dwnld_csv.href = "#"				
 				info.hidden = true
 			}
 			else{
 				dwnld.hidden = false
+				dwnld_pkl.hidden = false
 				dwnld_csv.hidden = false
-				dwnld.href = models_base_url + links[selectedTaskValue][parseInt(selectedSamplesValue)][0]
+				dwnld_pkl.href = models_base_url + links[selectedTaskValue][parseInt(selectedSamplesValue)][0]
 				dwnld_csv.href = models_base_url + links[selectedTaskValue][parseInt(selectedSamplesValue)][1]
 				info.hidden = false
 			}

@@ -8,20 +8,20 @@ var table = {
 //var gh_models_url = "https://github.com/adithya8/ConEmbDR/models/rpca_roba_" 
 var models_base_url = "/blog/assets/ConEmbDR/models/" 
 var links = {
-	"demographics": {50: "fb20/rpca_roberta_16_D_20.pickle", 
-					100: "fb20/rpca_roberta_128_D_20.pickle", 
-					200: "fb20/rpca_roberta_512_D_20.pickle", 
-					500: "", 1000: ""},
-	"personality": {50: "fb20/rpca_roberta_16_D_20.pickle", 
-					100: "fb20/rpca_roberta_16_D_20.pickle", 
-					200: "fb20/rpca_roberta_32_D_20.pickle", 
-					500: "fb20/rpca_roberta_64_D_20.pickle", 
-					1000: "fb20/rpca_roberta_128_D_20.pickle"},
-	"mental health": {50: "mental-health/rpca_roberta_16.tar.gz", 
-					100: "mental-health/rpca_roberta_32.tar.gz", 
-					200: "mental-health/rpca_roberta_64.tar.gz", 
-					500: "mental-health/rpca_roberta_64.tar.gz", 
-					1000: "mental-health/rpca_roberta_64.tar.gz"},
+	"demographics": {50: ["fb20/rpca_roberta_16_D_20.pickle", "fb20/rpca_roberta_16_D_20.csv"], 
+			100: ["fb20/rpca_roberta_128_D_20.pickle","fb20/rpca_roberta_128_D_20.csv"], 
+			200: ["fb20/rpca_roberta_512_D_20.pickle","fb20/rpca_roberta_512_D_20.csv"], 
+			500: ["", ""], 1000: ["", ""]},
+	"personality": {50: ["fb20/rpca_roberta_16_D_20.pickle", "fb20/rpca_roberta_16_D_20.csv"], 
+			100: ["fb20/rpca_roberta_16_D_20.pickle", "fb20/rpca_roberta_16_D_20.csv"], 
+			200: ["fb20/rpca_roberta_32_D_20.pickle", "fb20/rpca_roberta_32_D_20.csv"], 
+			500: ["fb20/rpca_roberta_64_D_20.pickle", "fb20/rpca_roberta_64_D_20.csv"], 
+			1000: ["fb20/rpca_roberta_128_D_20.pickle", "fb20/rpca_roberta_128_D_20.csv"]},
+	"mental health": {50: ["mental-health/rpca_roberta_16_pickle.zip", "mental-health/rpca_roberta_16_csv.zip"], 
+			100: ["mental-health/rpca_roberta_32_pickle.zip", "mental-health/rpca_roberta_32_csv.zip"], 
+			200: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"], 
+			500: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"], 
+			1000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"]},
 	}
 
 var Nta = [50, 100, 200, 500, 1000]
@@ -57,14 +57,18 @@ function changeFunc() {
 				answer.innerHTML = "We recommend using the Roberta base embeddings as is."
 			}
 			
-			if (links[selectedTaskValue][parseInt(selectedSamplesValue)] === ""){
+			if (links[selectedTaskValue][parseInt(selectedSamplesValue)][0] === ""){
 				dwnld.hidden = true
+				dwnld_csv.hidden = true
 				dwnld.href = "#"
+				dwnld_csv.href = "#"				
 				info.hidden = true
 			}
 			else{
 				dwnld.hidden = false
-				dwnld.href = models_base_url + links[selectedTaskValue][parseInt(selectedSamplesValue)]
+				dwnld_csv.hidden = false
+				dwnld.href = models_base_url + links[selectedTaskValue][parseInt(selectedSamplesValue)][0]
+				dwnld_csv.href = models_base_url + links[selectedTaskValue][parseInt(selectedSamplesValue)][1]
 				info.hidden = false
 			}
 		}

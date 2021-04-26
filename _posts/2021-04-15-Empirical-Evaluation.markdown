@@ -58,7 +58,16 @@ Hence these tasks provide an alternative evaluation of the semantics captured by
 Most of these tasks are based on social media language. Hence a model fine-tuned to the social media domain would work the best. However, amongst the popularly used pre-trained models, we find roberta to offer the best performance in these tasks.
 
 ### How do we improve the performance of transformers in these tasks?
-It is very simple, yet effective. Training PCA to reduce the dimensions of the transformer on the domain data improves the performance over these pre-trained representations. The number of dimensions required to obtain the best performance is summarized in this [table](https://github.com/adithya8/ContextualEmbeddingDR#training-sample-size-vs-number-of-dimensions-required). We find that many human-level tasks only require 1/6th or 1/12th of the hidden dimensions to achieve best performance.
+It is very simple, yet effective. Training PCA to reduce the dimensions of the transformer on the domain data improves the performance over these pre-trained representations. The number of dimensions required to obtain the best performance is summarized in the table below. We find that many human-level tasks only require 1/6th or 1/12th of the hidden dimensions to achieve best performance.
+
+| Number of training samples | Demographic Tasks | Personality Tasks | Mental Health Tasks |
+| -------------------------- | :---------------: | :---------------: | :-----------------: |
+| 50                         | 16                | 16                | 16                  |
+| 100			     | 128		 | 16		     | 22		   |
+| 200			     | 512		 | 32		     | 45		   |
+| 500			     | 768		 | 64		     | 64		   |
+| 1000			     | 768		 | 90		     | 64		   |
+
 
 ### Why PCA?
 Amongst the standard reduction methods based on SVD, we find that PCA and NMF produce consistently better performance over the rest. We also find that PCA is better than NMF in handling longer sequences of texts, which is depicted in the figure below.

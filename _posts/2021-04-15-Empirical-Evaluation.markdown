@@ -97,5 +97,5 @@ You can cite our work with:
 <div id="Footnotes">
 <sup>1</sup> The recommended dimensions were arrived by taking the median of the best performing number of dimensions across various tasks. Hence the model provided in the download link will be the least number of dimensions greater than or equal to the recommended dimensions.
 <br><br>
-<sup>2</sup> Learn more about the pre-trained reduction models<a href="https://github.com/adithya8/ContextualEmbeddingDR/tree/master/models#model-usage"> here</a>.
+<sup>2</sup> Learn more about the pre-trained reduction models<a href="https://github.com/adithya8/ContextualEmbeddingDR/tree/master/models#model-description"> here</a>.
 </div>

@@ -53,7 +53,7 @@ function changeFunc() {
 		if (selectedSamplesValue !== null && selectedTaskValue !== null){
 
 			if (table[selectedTaskValue][parseInt(selectedSamplesValue)] !== 768){
-				answer.innerHTML = "We recommend reducing Roberta base embeddings from 768 dimensions to " + table[selectedTaskValue][parseInt(selectedSamplesValue)].toString() + "."
+				answer.innerHTML = "We recommend<sup><a href='#Footnotes'>1</a></sup> reducing Roberta base embeddings from 768 dimensions to " + table[selectedTaskValue][parseInt(selectedSamplesValue)].toString() + "."
 			}
 			else {
 				answer.innerHTML = "We recommend using the Roberta base embeddings as is."

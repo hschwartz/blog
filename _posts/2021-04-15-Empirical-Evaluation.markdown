@@ -73,8 +73,8 @@ Most of these tasks are based on social media language. Hence a model fine-tuned
 ### Which reduction method is preferable?
 Amongst the standard reduction methods based on SVD, we find that PCA and NMF produce consistently better performance over the rest. We also find that PCA is better than NMF in handling longer sequences of texts, which is depicted in the figure below.
 <p align="center">
- <img src="{{ site.url }}/blog/assets/ConEmbDR/RPCA_NMFdeltaErrorAvg1gramsPerMsg.png" style="width: 45%">
- <img src="{{ site.url }}/blog/assets/ConEmbDR/RPCA_NMFdeltaErrorAvg1gramsPerMsg_ext.png" style="width: 45%">
+ <img src="{{ site.url }}/blog/assets/ConEmbDR/RPCA_NMFdeltaErrorAvg1gramsPerMsg.png" style="width: 40%">
+ <img src="{{ site.url }}/blog/assets/ConEmbDR/RPCA_NMFdeltaErrorAvg1gramsPerMsg_ext.png" style="width: 40%">
 </p>
 
 You can cite our work with:

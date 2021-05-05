@@ -25,6 +25,9 @@ script: /assets/ConEmbDR/empirical-eval.js
 <option value="200">200</option>
 <option value="500">500</option>
 <option value="1000">1000</option>
+<option value="2000">2000</option>
+<option value="5000">5000</option>
+<option value="10000">10000</option>
 </select>
 </div>
 </div>
@@ -53,6 +56,9 @@ It is very simple, yet effective. Training PCA to reduce the dimensions of the t
 | 200			     | 512		 | 32		     | 45		   |
 | 500			     | 768		 | 64		     | 64		   |
 | 1000			     | 768		 | 90		     | 64		   |
+| 2000			     | 768		 | 90		     | 64		   |
+| 5000			     | 768		 | 181		     | 64		   |
+| 10000			     | 768		 | 181		     | 64		   |
 
 
 ### What are Human-Level NLP tasks?

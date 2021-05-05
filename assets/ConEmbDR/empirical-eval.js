@@ -24,10 +24,10 @@ var links = {
 			100: ["mental-health/rpca_roberta_32_pickle.zip", "mental-health/rpca_roberta_32_csv.zip"], 
 			200: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"], 
 			500: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"], 
-			1000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"]},
-			2000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"]},
-			5000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"]},
-			10000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"]},
+			1000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"],
+			2000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"],
+			5000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"],
+			10000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"]}
 	}
 
 var Nta = [50, 100, 200, 500, 1000, 2000, 5000, 10000]

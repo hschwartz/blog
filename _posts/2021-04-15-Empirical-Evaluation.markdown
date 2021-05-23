@@ -79,17 +79,20 @@ Amongst the standard reduction methods based on SVD, we find that PCA and NMF pr
 
 You can cite our work with:
 	
-	@inproceedings{vganesan2021empirical,
-	title="Empirical Evaluation of Pre-trained Transformers for Human-Level NLP: The Role of Sample Size and Dimensionality",
-	author="V Ganesan, Adithya 
-	   and Matero, Matthew 
-	   and Ravula, Aravind Reddy 
-	   and Vu, Huy 
-	   and Schwartz, H. Andrew"
-	booktitle = "Proceedings of the 2021 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies",
+	@inproceedings{v-ganesan-etal-2021-empirical,
+	title = "Empirical Evaluation of Pre-trained Transformers for Human-Level {NLP}: The Role of Sample Size and Dimensionality",
+	author = "V Ganesan, Adithya  and
+		Matero, Matthew  and
+		Ravula, Aravind Reddy  and
+		Vu, Huy  and
+		Schwartz, H. Andrew",
+	booktitle = "Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+	month = jun,
 	year = "2021",
+	address = "Online",
 	publisher = "Association for Computational Linguistics",
-	}
+	url = "https://www.aclweb.org/anthology/2021.naacl-main.357",
+	pages = "4515--4532"}
 
 ---
 

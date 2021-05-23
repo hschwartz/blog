@@ -1,7 +1,7 @@
 var table = {
-"demographics": {50: 16, 100: 128, 200: 512, 500: 768, 1000: 768},
-"personality": {50: 16, 100: 16, 200: 32, 500: 64, 1000: 90},
-"mental health": {50: 16, 100: 22, 200: 45, 500: 64, 1000: 64},
+"demographics": {50: 16, 100: 128, 200: 512, 500: 768, 1000: 768, 2000: 768, 5000: 768, 10000: 768},
+"personality": {50: 16, 100: 16, 200: 32, 500: 64, 1000: 90, 2000: 90, 5000: 181, 10000: 181},
+"mental health": {50: 16, 100: 22, 200: 45, 500: 64, 1000: 64, 2000: 64, 5000: 64, 10000: 64},
 }
 
 //TODO: Finish linking the model files
@@ -11,20 +11,26 @@ var links = {
 	"demographics": {50: ["fb20/rpca_roberta_16_D_20.pickle", "fb20/rpca_roberta_16_D_20.csv"], 
 			100: ["fb20/rpca_roberta_128_D_20.pickle","fb20/rpca_roberta_128_D_20.csv"], 
 			200: ["fb20/rpca_roberta_512_D_20.pickle","fb20/rpca_roberta_512_D_20.csv"], 
-			500: ["", ""], 1000: ["", ""]},
+			500: ["", ""], 1000: ["", ""], 2000: ["", ""], 5000: ["", ""], 10000: ["", ""]},
 	"personality": {50: ["fb20/rpca_roberta_16_D_20.pickle", "fb20/rpca_roberta_16_D_20.csv"], 
 			100: ["fb20/rpca_roberta_16_D_20.pickle", "fb20/rpca_roberta_16_D_20.csv"], 
 			200: ["fb20/rpca_roberta_32_D_20.pickle", "fb20/rpca_roberta_32_D_20.csv"], 
 			500: ["fb20/rpca_roberta_64_D_20.pickle", "fb20/rpca_roberta_64_D_20.csv"], 
-			1000: ["fb20/rpca_roberta_128_D_20.pickle", "fb20/rpca_roberta_128_D_20.csv"]},
+			1000: ["fb20/rpca_roberta_128_D_20.pickle", "fb20/rpca_roberta_128_D_20.csv"],
+                        2000: ["fb20/rpca_roberta_128_D_20.pickle", "fb20/rpca_roberta_128_D_20.csv"],
+                        5000: ["fb20/rpca_roberta_256_D_20.pickle", "fb20/rpca_roberta_256_D_20.csv"],
+                        10000: ["fb20/rpca_roberta_256_D_20.pickle", "fb20/rpca_roberta_256_D_20.csv"],},
 	"mental health": {50: ["mental-health/rpca_roberta_16_pickle.zip", "mental-health/rpca_roberta_16_csv.zip"], 
 			100: ["mental-health/rpca_roberta_32_pickle.zip", "mental-health/rpca_roberta_32_csv.zip"], 
 			200: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"], 
 			500: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"], 
-			1000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"]},
+			1000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"],
+			2000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"],
+			5000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"],
+			10000: ["mental-health/rpca_roberta_64_pickle.zip", "mental-health/rpca_roberta_64_csv.zip"]}
 	}
 
-var Nta = [50, 100, 200, 500, 1000]
+var Nta = [50, 100, 200, 500, 1000, 2000, 5000, 10000]
 var selectedTaskValue = null
 var selectedSamplesValue = null
 

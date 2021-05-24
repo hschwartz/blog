@@ -8,6 +8,8 @@ script: /assets/ConEmbDR/empirical-eval.js
 
 ### TLDR: How many transformer dimensions are required for your task?
 
+From NACCL-2021: [Empirical Evaluation of Pre-trained Transformers for Human-Level NLP: The Role of Sample Size and Dimensionality](https://aclanthology.org/2021.naacl-main.357/)
+	
 <div class="row" align="center">
 <div class="col-sm" style="margin: 2%">
 <select id="task" class="custom-select custom-select-lg mb-3" onchange="changeFunc();">
@@ -43,11 +45,42 @@ Download<sup><a href="#Footnotes">2</a></sup> pre-trained reduction model as:
 
 <hr>
 
-This work is intended to inform researchers in Computational Social Science a simple way to improve the performance of transformer based models. We find that training PCA on transformer representations using the domain data improves the model performance overall, with evidence of handling longer sequences better than other reduction methods.
-Use the above lookup to get the recommmended number of dimensions required for given number of samples in each task domain to achieve the best performance.
+*Working on human-level NLP and looking for a simple way to effectively improve transformer-based approaches?* We first find that fine-tuning large models with a limited amount of data pose a significant difficulty which can be overcome with a pre-trained dimension reduction regime. RoBERTa consistently achieves top performance in human-level tasks, with PCA giving benefit over other reduction methods in better handling users that write longer texts. Over many tasks, models can achieve results comparable to the best performance with just 1/12 of the embedding dimensions.
+**Use the form above to download our recommended RoBERTA dimensionality reduction given your (a) number of training samples, and (b) task domain.**
 
 ### How to improve the performance of contextual embeddings in low sample settings?
-It is very simple, yet effective. Training PCA to reduce the dimensions of the transformer on the domain data improves the performance over these pre-trained representations. The number of dimensions required to obtain the best performance is summarized in the table below. We find that many  of these tasks only require 1/6th or 1/12th of the hidden dimensions to achieve best performance.
+It is very simple, yet effective. Training PCA to reduce the dimensions of the transformer on *unlabeled* domain data improves the performance over pre-trained representations (or fine-tuning to the task). Results from a thoroughy investigation using bootstrapped sampling, demonstrate using such a transformation are typically produces accuracies in downstream tasks as good or significantly better than using the second-to-last layer or fine-tuning the transformer at the message-level. The code to do the dimensionality reduction (transformation matrix or [DLATK](github.com/dlatk/dlatk) picklefile) are available by selecting your situation's sample size and task domain above.
+
+
+### What are Human-Level NLP tasks?
+Human-level NLP tasks, rooted in computational social science, focus on estimating characteristics about people from their language use patterns. Examples of these tasks include  personality trait prediction, mental health assessment, and demographic estimation. Using transformers for these tasks enables them to not only campture the words used but the semantics given the context in which they occur and the person behind it. *However, these tasks often only have training datasets numbering in the hundreds.*
+
+### What are the challenges of using transformers in these tasks?
+Transformer models yield representations of over 20,000 dimemensions! (i.e. 1024 hidden-state size by 24 layers). Even just using one layer often means the number of dimensions are larger than the number training examples (often numbering only a few hundred). Furhter, transformers are pre-trained at document level, and yet these tasks run over multiple docuents. In fact, we fine-tuning transformers (without making significant architectural changes) for these tasks results in worse performance than using them to just get pre-trained contextual embeddings of the data. The best models in shared tasks use something akin to the average document-level embeddings across all posts of a user (e.g. see CLPsych-2019 shared task).
+
+
+### Why are these tasks important?
+Natural language is human-generated. 
+Understanding human attributes associated with language can enable applications that improve human life, such as producing better mental health assessments that could ultimately save lives.
+Mental health conditions, such as depression, are widespread and many suffering from such conditions are under-served with only 13 - 49% receiving minimally adequate treatment (Kessler et al., 2003; Wang et al., 2005).
+We believe this technology, when used in collaboration with mental health care professionals, offers the potential to broaden the coverage of mental health care to such populations where resources are currently limited. 
+
+Further, for the advancement of NLP in general, these tasks present a challenge in modeling: The samples from a person are composed of a greater variety of subject matters (posts) with limited high signal messages amidst the noise. Some of the human-level tasks are unique in not having a single ground truth but a set of accepted outcomes - making it challenging to interpret metrics like accuracy.
+Hence these tasks provide an alternative evaluation of the semantics captured by the standard LMs, i.e., understanding the person behind the text rather than assuming a single view of what the text expresses. Fewer features without loss of accuracy generally suggests greater generalization. 
+
+### Which transformer model is suited for these tasks?
+Most of these tasks are based on social media language. Hence a model fine-tuned to the social media domain would work the best. However, amongst the popularly used pre-trained models, we find **RoBERTA** to offer the best performance in these tasks.
+
+
+### Which reduction method is preferable?
+Amongst the reduction methods based on the techniques of non-linear autoencoders and Singular Value Decomposition (SVD), we find that PCA and Non-negative Matrix Factorization (NMF) produce consistently better performance over the rest. We also find that PCA is better than NMF in handling longer sequences of texts, which is depicted in the figure below.
+<p align="center">
+ <img src="{{ site.url }}/blog/assets/ConEmbDR/RPCA_NMFdeltaErrorAvg1gramsPerMsg.png" style="width: 40%">
+ <img src="{{ site.url }}/blog/assets/ConEmbDR/RPCA_NMFdeltaErrorAvg1gramsPerMsg_ext.png" style="width: 40%">
+</p>
+
+### What are the full results on the ideal number of dimensions per task domain?
+The number of dimensions required to obtain the best performance is summarized in the table below. We find that many  of these tasks only require 1/6th or 1/12th of the hidden dimensions to achieve best performance. 
 
 | Number of training samples | Demographic Tasks | Personality Tasks | Mental Health Tasks |
 | -------------------------- | :---------------: | :---------------: | :-----------------: |
@@ -61,29 +94,7 @@ It is very simple, yet effective. Training PCA to reduce the dimensions of the t
 | 10000			     | 768		 | 181		     | 64		   |
 
 
-### What are Human-Level NLP tasks?
-Human-level NLP tasks, rooted in computational social science, focus on making predictions about people from their language use patterns. Examples of these tasks include demographic prediction, personality trait prediction and mental health related tasks. These tasks aim to understand the language not just merely based on the words and what they mean, but the context (history) in which they occur and the person behind it. 
-
-### What are the challenges and limitations of using transformers in these tasks?
-Transformers are pre-trained at document level and are hence only readily usable for document- and word-level tasks. We find that fine-tuning transformers (without making significant architectural changes) for these tasks doesn't improve its performance. 
-In low sample setting, such as human-level tasks, these models contain more dimensions than necessary.
-
-### Why are these tasks important?
-These tasks present a challenge in modeling, as the samples from a person are composed of less coherent subject matters (posts) with limited high signal messages amidst the noise. Some of the human-level tasks are unique in not having a single ground truth but a set of accepted outcomes - making it challenging to interpret metrics like accuracy.
-
-Hence these tasks provide an alternative evaluation of the semantics captured by the standard LMs, i.e., understanding the person behind the text rather than assuming a single view of what the text expresses. This also suggests that the many dimensions of transformers containing syntax and semantics of text may be less useful. It is also important to note that fewer features are easier to generalize the model.
-
-### Which transformer model is suited for these tasks?
-Most of these tasks are based on social media language. Hence a model fine-tuned to the social media domain would work the best. However, amongst the popularly used pre-trained models, we find roberta to offer the best performance in these tasks.
-
-### Which reduction method is preferable?
-Amongst the standard reduction methods based on SVD, we find that PCA and NMF produce consistently better performance over the rest. We also find that PCA is better than NMF in handling longer sequences of texts, which is depicted in the figure below.
-<p align="center">
- <img src="{{ site.url }}/blog/assets/ConEmbDR/RPCA_NMFdeltaErrorAvg1gramsPerMsg.png" style="width: 40%">
- <img src="{{ site.url }}/blog/assets/ConEmbDR/RPCA_NMFdeltaErrorAvg1gramsPerMsg_ext.png" style="width: 40%">
-</p>
-
-You can cite our work with:
+### How to cite this:
 	
 	@inproceedings{v-ganesan-etal-2021-empirical,
 	title = "Empirical Evaluation of Pre-trained Transformers for Human-Level {NLP}: The Role of Sample Size and Dimensionality",
@@ -97,7 +108,7 @@ You can cite our work with:
 	year = "2021",
 	address = "Online",
 	publisher = "Association for Computational Linguistics",
-	url = "https://www.aclweb.org/anthology/2021.naacl-main.357",
+	url = "aclanthology.org/2021.naacl-main.357/",
 	pages = "4515--4532"}
 
 ---

@@ -7,7 +7,7 @@ script: /assets/ConEmbDR/empirical-eval.js
 ---
 
 ### TLDR: How many transformer dimensions are required for your task?
-
+from NAACL-2021 paper: <a href="https://aclanthology.org/2021.naacl-main.357/>Empirical Evaluation of Pre-trained Transformers for Human-Level NLP: The Role of Sample Size and Dimensionality</a>
 <div class="row" align="center">
 <div class="col-sm" style="margin: 2%">
 <select id="task" class="custom-select custom-select-lg mb-3" onchange="changeFunc();">
@@ -97,7 +97,7 @@ You can cite our work with:
 	year = "2021",
 	address = "Online",
 	publisher = "Association for Computational Linguistics",
-	url = "https://www.aclweb.org/anthology/2021.naacl-main.357",
+	url = "https://aclanthology.org/2021.naacl-main.357/",
 	pages = "4515--4532"}
 
 ---

@@ -8,8 +8,6 @@ script: /assets/ConEmbDR/empirical-eval.js
 
 ### TLDR: How many transformer dimensions are required for your task?
 
-From NACCL-2021: [Empirical Evaluation of Pre-trained Transformers for Human-Level NLP: The Role of Sample Size and Dimensionality](https://aclanthology.org/2021.naacl-main.357/)
-
 <div class="row" align="center">
 <div class="col-sm" style="margin: 2%">
 <select id="task" class="custom-select custom-select-lg mb-3" onchange="changeFunc();">
@@ -45,12 +43,15 @@ Download<sup><a href="#Footnotes">2</a></sup> pre-trained reduction model as:
 
 <hr>
 
-*Working on human-level NLP and looking for a simple way to effectively improve transformer-based approaches?* We first find that fine-tuning large models with a limited amount of data pose a significant difficulty which can be overcome with a pre-trained dimension reduction regime. RoBERTa consistently achieves top performance in human-level tasks, with PCA giving benefit over other reduction methods in better handling users that write longer texts. Over many tasks, models can achieve results comparable to the best performance with just 1/12 of the embedding dimensions.
+*Working on human-level NLP and looking for a simple way to effectively improve transformer-based approaches?* We've empirically investigated and found some useful optoins: We first find that fine-tuning large models with a limited amount of data pose a significant difficulty which can be overcome with a pre-trained dimension reduction regime. RoBERTa consistently achieves top performance in human-level tasks, with PCA giving benefit over other reduction methods in better handling users that write longer texts. Often, task-specific models can achieve results comparable to the best performance with just 1/12 of the embedding dimensions.
 **Use the form above to download our recommended RoBERTA dimensionality reduction given your (a) number of training samples, and (b) task domain.**
 
 ### How to improve the performance of contextual embeddings in low sample settings?
 It is very simple, yet effective. Training PCA to reduce the dimensions of the transformer on *unlabeled* domain data improves the performance over pre-trained representations (or fine-tuning to the task). Results from a thoroughy investigation using bootstrapped sampling, demonstrate using such a transformation are typically produces accuracies in downstream tasks as good or significantly better than using the second-to-last layer or fine-tuning the transformer at the message-level. The code to do the dimensionality reduction (transformation matrix or [DLATK](github.com/dlatk/dlatk) picklefile) are available by selecting your situation's sample size and task domain above.
 
+#### Key Links
+ * [Paper from NACCL-2021](https://aclanthology.org/2021.naacl-main.357/)
+ * [Code for Dimension Reduction of Contextual Embeddings](https://github.com/adithya8/ContextualEmbeddingDR)
 
 ### What are Human-Level NLP tasks?
 Human-level NLP tasks, rooted in computational social science, focus on estimating characteristics about people from their language use patterns. Examples of these tasks include  personality trait prediction, mental health assessment, and demographic estimation. Using transformers for these tasks enables them to not only campture the words used but the semantics given the context in which they occur and the person behind it. *However, these tasks often only have training datasets numbering in the hundreds.*
@@ -98,15 +99,11 @@ The number of dimensions required to obtain the best performance is summarized i
 	
 	@inproceedings{v-ganesan-etal-2021-empirical,
 	title = "Empirical Evaluation of Pre-trained Transformers for Human-Level {NLP}: The Role of Sample Size and Dimensionality",
-	author = "V Ganesan, Adithya  and
-		Matero, Matthew  and
-		Ravula, Aravind Reddy  and
-		Vu, Huy  and
-		Schwartz, H. Andrew",
+	author = "V Ganesan, Adithya  and Matero, Matthew  and Ravula, Aravind Reddy  andVu, Huy  and Schwartz, H. Andrew",
 	booktitle = "Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
 	month = jun,
 	year = "2021",
-	address = "Online",
+	address = "Bangkok, Thailand",
 	publisher = "Association for Computational Linguistics",
 	url = "aclanthology.org/2021.naacl-main.357/",
 	pages = "4515--4532"}

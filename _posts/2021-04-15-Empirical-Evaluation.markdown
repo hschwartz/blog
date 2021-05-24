@@ -9,7 +9,7 @@ script: /assets/ConEmbDR/empirical-eval.js
 ### TLDR: How many transformer dimensions are required for your task?
 
 From NACCL-2021: [Empirical Evaluation of Pre-trained Transformers for Human-Level NLP: The Role of Sample Size and Dimensionality](https://aclanthology.org/2021.naacl-main.357/)
-	
+
 <div class="row" align="center">
 <div class="col-sm" style="margin: 2%">
 <select id="task" class="custom-select custom-select-lg mb-3" onchange="changeFunc();">
